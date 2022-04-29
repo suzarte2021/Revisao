@@ -1,6 +1,6 @@
-package DuplamenteEncadeada;
+package ListaDuplamenteEncadeada;
 
-public class Celula <T> {
+public class Celula <T>{
 	private T informacao ;
 	private Celula <T> anterior; 
 	private Celula <T> proximo;
@@ -24,4 +24,7 @@ public class Celula <T> {
 		this.proximo = proximo;
 	} 
 
-}
+	} 
+
+
+

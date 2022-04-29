@@ -1,37 +1,78 @@
-package DuplamenteEncadeada;
+package ListaDuplamenteEncadeada;
 
-public class ListaDuplamente  {
-	
+public class ListaDuplamente <T> {
+
 //  Lista duplamente encadeada
 //  Adicionar no inicio, adicionar no fim, 
 //	  remover no inicio,remover no fim, listar
-	public static void main(String[] args) {
-		
-		DuplamenteEncadeada<Integer> lista = new DuplamenteEncadeada();
-	for (int i = 0; i < 5; i++) {
-		lista.adicionarInicio(i);	
-	}
-	System.out.println("Adicionado no Inicio:");
-	System.out.println(lista);
-	for (int i = 0; i < 3; i++) {
-		lista.removerInicio();	
-	}
-	System.out.println("Removendo no Inicio:");
-	System.out.println(lista);
-System.out.println("\n");
-for (int i = 0; i < 5; i++) {
-	lista.adicionarInicio(i);	
-}
-System.out.println("Adicionado no Inicio:");
-System.out.println(lista);
-for (int i = 0; i < 2; i++) {
-	lista.removerInicio();	
-}
-System.out.println("removendo 2 no Inicio:");
-System.out.println(lista);
+	
+		private Celula inicio, fim;
+		int tamanho;
 
-lista.removerFim();
-System.out.println("removendo no 1 no fim:");
-System.out.println(lista);
-}
+		public void adicionarInicio(T informacao) {
+			Celula celula = new Celula();
+		   celula.setInformacao(informacao);
+			celula.setAnterior(null);
+			celula.setProximo(inicio);
+			if(inicio!= null) {
+				inicio.setAnterior(celula);
+			}
+			inicio = celula;
+			if(tamanho == 0){
+				fim  = inicio;
+			}
+			tamanho++;
+		}
+		public void removerInicio() {
+			if (inicio == null) {
+				inicio = null;
+			}
+			inicio.getInformacao();
+			inicio = inicio.getProximo();
+			if(inicio!= null) {
+				inicio.setAnterior(null);
+				tamanho--;
+			}else {
+				fim = null;
+				tamanho--;
+			}
+
+		}
+		public void adicionarFim(Celula informacao) {
+			Celula celula = new Celula();
+			celula.setInformacao(informacao);
+			celula.setProximo(null);
+			celula.setAnterior(fim);
+			if (fim != null){
+				fim.setProximo(celula);
+			}
+			fim = celula;
+			if(tamanho == 0) {
+				inicio = fim;
+			}
+			tamanho++;
+		}
+		public void removerFim() {
+			if (inicio == null) {
+				inicio = null;
+			}
+			fim.getInformacao();
+			fim = fim.getAnterior();
+
+			if(fim!= null) {
+				fim.setProximo(null);
+				tamanho--;
+			}
+		
+		}
+		public String toString () {
+			String imprime = "Tamanho da lista: [" + tamanho + "] " + "\n";
+			Celula valor = inicio;
+			while (valor !=null) {
+				imprime += valor.getInformacao() + " ";
+				valor = valor.getProximo();
+			}
+			return imprime;
+		}
+		
 }
